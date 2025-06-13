@@ -310,5 +310,18 @@ int main(int argc, char *argv[]) {
     }
 
     json_decref(root);
+
+    while (read_line(line, MAX_CHARS) != (char *)NULL) {
+
+        /* parse text into JSON structure */
+        json_t *root = load_json(line);
+
+        if (root) {
+            /* print and release the JSON structure */
+            print_json(root);
+            json_decref(root);
+        }
+    }
+
     return 0;
 }
